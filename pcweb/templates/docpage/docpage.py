@@ -313,8 +313,8 @@ def get_toc(source, href, component_list=None):
 
     if len(component_list):
         headings.append((1, "API Reference"))
-    for component in component_list:
-        headings.append((2, component.__name__))
+    for component_tuple in component_list:
+        headings.append((2, component_tuple[1]))
     return headings
 
 
@@ -409,7 +409,7 @@ def docpage(set_path: str | None = None, t: str | None = None, right_sidebar: bo
                 comp = contents(*args, **kwargs)
             else:
                 comp = contents
-
+                
             if isinstance(comp, tuple):
                 toc, comp = comp
 
@@ -503,6 +503,8 @@ def docpage(set_path: str | None = None, t: str | None = None, right_sidebar: bo
                             spacing="2",
                             justify="start",
                             overflow="hidden",
+                            max_height="80vh",
+                            overflow_y="scroll",
                         ),
                         margin_top="110px",
                         width="18%",
